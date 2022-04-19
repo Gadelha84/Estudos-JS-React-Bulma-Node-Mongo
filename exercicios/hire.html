@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cabecalho">
+        <img src="../Estudos-JS-React-Bulma-Node-Mongo/_img/logo.png" alt="logo">
+        <label>|</label>
+        <a href="spaceship.html">The Spaceships</a>
+        <label>|</label>
+        <a href="hire.html">Hire Us</a><hr>
+    </div>
+
+    <h3>Hire Us Now</h3>
+    <p>Leave a message to request one of our services and we will get back to you as soon as a possible</p><br>
+
+    <div class="formulario">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" required>
+        <label for="mail">- Email:</label>
+        <input type="email" id="mail" required>
+    </div>
+    <br>
+    <div class="service">
+        <label for="ship">Spaceship:</label>
+        <select name="ship" id="ship">
+            <option value="falcon">Falcon 9</option>
+            <option value="falcon_heavy">Falcon Heavy</option>
+        </select>
+        <label for="services">| Type of Service:</label>
+        <input type="search" id="services" name="services" list="service">
+        <datalist id="service">
+            <option value="Lorem ipsum dolor sit amet consectetur adipisicing elit"></option>
+            <option value="Quibusdam corporis repellendus earum debitis repudiandae"></option>
+            <option value="Iusto natus hic architecto officia repudiandae"></option>
+            <option value="eius aperiam a nihil nostrum iste ea praesentium aspernatur aliquam"></option>
+        </datalist>
+        <div class="button"><br>
+        <input type="submit" value="Send Message">
+        </div>
+    </div>
+</body>
+</html>
