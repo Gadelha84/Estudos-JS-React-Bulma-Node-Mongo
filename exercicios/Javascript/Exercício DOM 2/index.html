@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./DOM.js"></script>
+    <title>Exercício - Casas</title>
+</head>
+<body>
+    <button onclick="addNewHouse()">Cadastrar</button>
+    <button onclick="deleteHouses()">Remover todas as casas</button><hr>
+    <form id="cadastro">
+      <fieldset>
+        <legend>Cadastro</legend>
+        <p>
+            <label>Número: </label>
+            <input type="number" id="number">
+        </p>
+
+        <p>
+            <label>Bairro: </label>
+            <input type="text" id="district">
+        </p>
+
+        <p>
+            <label>Cidade: </label>
+            <input type="text" id="city">
+        </p>
+
+        <p>
+            <label>Área da casa: </label>
+            <input type="text" id="areaOfTheHouse">
+        </p>
+      </fieldset>
+    </form>
+  
+    <div id="list-houses"></div>
+</body>
+</html>

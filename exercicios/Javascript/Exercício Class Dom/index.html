@@ -1,0 +1,37 @@
+</html><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./imob.js"></script>
+    <title>Cadastro de Imóveis</title>
+</head>
+<body>
+    <button onclick="createImmobile()">Cadastrar</button>
+    <form>
+        <br /><fieldset>
+            <legend>Cadastro de Imóveis</legend>
+        <p>
+            <label>Tipo de imóvel: </label>
+            <select name="kind">
+                <option value="Casa">Casa</option>
+                <option value="Apartamento">Apartamento</option>
+            </select>
+        </p>
+        <p>
+            <label>Área: </label>
+            <input type="number" name="area">
+        </p>
+        <p>
+            <label>Situação do imóvel: </label>
+            <select name="rentSituation">
+                <option value="Alugado">Alugado</option>
+                <option value="Disponivel">Disponível</option>
+            </select>
+        </p>
+    </fieldset>
+    </form>
+    <div id="list-properties"></div>
+</body>
+</html>
