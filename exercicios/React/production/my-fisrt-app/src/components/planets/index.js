@@ -1,20 +1,59 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Planet from "./planet";
 
+async function getPlanets() {
+    let response = await fetch('http://localhost:3000/api/planets.json')
+    let data = await response.json()
+    return data;
+}
+
+//componentDidMount() {
+//    getPlanets().then(data => {
+//        this.setState(state => ({
+//            planets: data['planets']
+//        }))
+//    })
+//}
+
 const Planets = () => {
+    const [planets, setPlanets] = useState([
+        {
+            "id": "mars",
+            "name": "Mars",
+            "description": "Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war and is often referred to as the 'Red Planet'.",
+            "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/220px-OSIRIS_Mars_true_color.jpg",
+            "link": "https://en.wikipedia.org/wiki/Mars"
+          }
+    ])
+
+    const removeLast = () => {
+        let new_planets = [...planets]
+        new_planets.pop()
+        setPlanets(new_planets)
+    }
+
+    const duplicateLastPlanet = () => {
+        let last_planet = planets[planets.length - 1]
+        setPlanets([...planets, last_planet]);
+    }
+
     return (
         <Fragment>
             <h3>Planet List</h3>
-            <hr/>
-            <Planet name="Mercúrio"
-                    description="Mercúrio é o menor[nota 1][nota 2] e mais interno planeta do Sistema Solar, orbitando o Sol a cada 87,969 dias terrestres. A sua órbita tem a maior excentricidade e o seu eixo apresenta a menor inclinação em relação ao plano da órbita dentre todos os planetas do Sistema Solar. Mercúrio completa três rotações em torno de seu eixo a cada duas órbitas."
-                    img_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/280px-Mercury_in_color_-_Prockter07-edit1.jpg"
-            />
+            <button onClick={removeLast}>Remove Last</button>
+            <button onClick={duplicateLastPlanet}>Duplicate Last</button>
+            <hr />
+            {planets.map((planet, index) =>
+                <Planet
+                    id={planet.id}
+                    name={planet.name}
+                    description={planet.description}
+                    img_url={planet.img_url}
+                    link={planet.link}
+                    key={index}
+                />
+            )}
 
-<Planet name="Vênus"
-                    description="Vénus ou Vênus é o segundo planeta do Sistema Solar em ordem de distância a partir do Sol, orbitando-o a cada 224,7 dias. Recebeu seu nome em homenagem à deusa romana do amor e da beleza Vénus, equivalente a Afrodite. Depois da Lua, é o objeto mais brilhante do céu noturno, atingindo uma magnitude aparente de -4,6, o suficiente para produzir sombras. A distância média da Terra a Vênus é de 0,28 AU, sendo esta a menor distância entre qualquer par de planetas."
-                    img_url="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/PIA23791-Venus-RealAndEnhancedContrastViews-20200608_%28cropped2%29.jpg/280px-PIA23791-Venus-RealAndEnhancedContrastViews-20200608_%28cropped2%29.jpg"
-            />
         </Fragment>
     )
 }
