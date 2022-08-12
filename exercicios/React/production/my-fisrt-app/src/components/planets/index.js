@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Planet from "./planet";
+import Form from "./form";
 
 async function getPlanets() {
     let response = await fetch('http://localhost:3000/api/planets.json')
@@ -7,41 +8,24 @@ async function getPlanets() {
     return data;
 }
 
-//componentDidMount() {
-//    getPlanets().then(data => {
-//        this.setState(state => ({
-//            planets: data['planets']
-//        }))
-//    })
-//}
-
 const Planets = () => {
-    const [planets, setPlanets] = useState([
-        {
-            "id": "mars",
-            "name": "Mars",
-            "description": "Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war and is often referred to as the 'Red Planet'.",
-            "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/220px-OSIRIS_Mars_true_color.jpg",
-            "link": "https://en.wikipedia.org/wiki/Mars"
-          }
-    ])
+    const [planets, setPlanets] = useState([])
 
-    const removeLast = () => {
-        let new_planets = [...planets]
-        new_planets.pop()
-        setPlanets(new_planets)
-    }
+    useEffect(() => {
+        getPlanets().then(data => {
+            setPlanets(data['planets'])
+        })
+    }, [])
 
-    const duplicateLastPlanet = () => {
-        let last_planet = planets[planets.length - 1]
-        setPlanets([...planets, last_planet]);
+    const addPlanet = (new_planet) => {
+        setPlanets([...planets, new_planet])
     }
 
     return (
         <Fragment>
             <h3>Planet List</h3>
-            <button onClick={removeLast}>Remove Last</button>
-            <button onClick={duplicateLastPlanet}>Duplicate Last</button>
+            <hr />
+            <Form addPlanet={addPlanet} />
             <hr />
             {planets.map((planet, index) =>
                 <Planet
